@@ -1,13 +1,12 @@
+import { getCities } from '@/utils/getCities'
 import { NextRequest, NextResponse } from 'next/server'
 
-type Params = {
-	params: {
-		query: string
-	}
-}
+type Context = { params: Promise<{ query: string }> }
 
-export const GET = async (req: NextRequest, { params }: Params) => {
-	const { query } = params
+export const GET = async (req: NextRequest, context: Context) => {
+	const { query } = await context.params
 
-	return NextResponse.json({ query })
+	const cities: City[] = await getCities(query)
+
+	return NextResponse.json(cities)
 }
