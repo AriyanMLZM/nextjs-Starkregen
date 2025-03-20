@@ -1,1 +1,32 @@
 @import 'tailwindcss';
+
+@theme {
+	--color-bgColor: #0a0a0a;
+}
+
+html {
+	@apply text-[15px]
+  sm:text-[17px] 
+  md:text-[20px]
+	bg-bgColor;
+}
+
+.flex-center {
+	@apply flex
+  justify-center
+  items-center;
+}
+
+.t-input {
+	@apply px-[10px] 
+	pt-[2px] 
+	pb-[5px]
+	ring-[0.5px]
+	ring-white 
+	rounded-[10px] 
+	focus:outline-none
+  max-w-[350px]
+  w-full
+  text-[0.7rem]
+  text-white;
+}
