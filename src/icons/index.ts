@@ -1,3 +1,3 @@
 import { FaGithub as IconGithub } from 'react-icons/fa'
-
-export { IconGithub }
+import { LiaSearchLocationSolid as IconSearch } from 'react-icons/lia'
+export { IconGithub, IconSearch }

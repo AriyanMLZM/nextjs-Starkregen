@@ -1,8 +1,11 @@
+import { IconSearch } from '@/icons'
+
 const Search = () => {
 	return (
-		<div className="w-full flex-center">
-			<input type="text" placeholder="Search City" className="t-input" />
-		</div>
+		<label className="w-full flex-center">
+			<input type="text" placeholder="Search Location" className="t-input" />
+			<IconSearch className="text-white text-[20px] translate-x-[-25px]" />
+		</label>
 	)
 }
 
