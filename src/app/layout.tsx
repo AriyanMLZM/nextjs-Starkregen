@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Navbar } from '@/components'
+import { ReactQueryProvider } from '@/providers/ReactQuery'
 
 export const metadata: Metadata = {
 	title: 'Starkregen',
@@ -15,8 +16,10 @@ const RootLayout = ({
 	return (
 		<html lang="en">
 			<body>
-				<Navbar />
-				{children}
+				<ReactQueryProvider>
+					<Navbar />
+					{children}
+				</ReactQueryProvider>
 			</body>
 		</html>
 	)
