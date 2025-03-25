@@ -1,7 +1,16 @@
-type Props = {}
+import { getCurrent } from '@/utils/getCurrent'
 
-const page = (props: Props) => {
-	return <div>city page</div>
+type Props = {
+	params: Promise<{ name: string }>
+}
+
+const page = async ({ params }: Props) => {
+	const { name } = await params
+
+	const data = await getCurrent(name)
+	console.log(data)
+
+	return <div>{name}</div>
 }
 
 export default page
