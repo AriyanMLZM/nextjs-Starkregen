@@ -1,4 +1,4 @@
-import { getCities } from '@/utils/getCities'
+import { getCities } from '@/utils/getWeather'
 import { NextRequest, NextResponse } from 'next/server'
 
 type Context = { params: Promise<{ query: string }> }

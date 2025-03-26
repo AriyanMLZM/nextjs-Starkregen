@@ -1,4 +1,4 @@
-import { getCurrent } from '@/utils/getCurrent'
+import { getFullWeather } from '@/utils/getWeather'
 
 type Props = {
 	params: Promise<{ name: string }>
@@ -7,7 +7,7 @@ type Props = {
 const page = async ({ params }: Props) => {
 	const { name } = await params
 
-	const data = await getCurrent(name)
+	const data = await getFullWeather(name)
 	console.log(data)
 
 	return <div>{name}</div>
