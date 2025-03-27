@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { IconSearch } from '@/icons'
@@ -11,10 +11,20 @@ const fetchSearch = async (search: string) => {
 	return data
 }
 
-const Item = ({ item }: { item: City }) => {
+const Item = ({
+	item,
+	setSearch,
+}: {
+	item: City
+	setSearch: Dispatch<SetStateAction<string>>
+}) => {
 	return (
 		<div className="w-full p-[2px]">
-			<Link href={`/city/${item.name}`} className="text-[0.7rem] text-white">
+			<Link
+				onClick={() => setSearch('')}
+				href={`/city/${item.name}`}
+				className="text-[0.7rem] text-white"
+			>
 				span{item.name} - {item.region} - {item.country}
 			</Link>
 		</div>
@@ -55,7 +65,7 @@ const Search = () => {
 			{data && (
 				<section className="w-[30%] min-w-[150px] max-w-[300px] bg-bgColor rounded absolute mt-[10px]">
 					{data.map((item) => (
-						<Item key={item.id} item={item} />
+						<Item key={item.id} item={item} setSearch={setSearch} />
 					))}
 				</section>
 			)}
