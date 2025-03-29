@@ -1,5 +1,5 @@
 import { IconGithub } from '@/icons'
-import { Search } from './'
+import { Search, UnitSwitcher } from './'
 
 const Navbar = () => {
 	return (
@@ -10,7 +10,8 @@ const Navbar = () => {
 			<div className="w-2/4 flex-center">
 				<Search />
 			</div>
-			<div className="w-1/4 flex items-center justify-end">
+			<div className="w-1/4 flex items-center justify-end gap-[20px]">
+				<UnitSwitcher />
 				<a target="_blank" href="https://github.com/AriyanMLZM">
 					<IconGithub className="text-white text-[30px]" />
 				</a>
