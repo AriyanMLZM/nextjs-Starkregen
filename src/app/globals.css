@@ -12,6 +12,7 @@ html {
   sm:text-[17px] 
   md:text-[20px]
 	font-[Poppins]
+	text-white
 	bg-bgColor;
 }
 

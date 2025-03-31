@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Navbar } from '@/components'
 import { ReactQueryProvider } from '@/providers/ReactQuery'
-import { UnitProvider } from '@/context/UnitContext'
+import { UnitProvider } from '@/contexts/UnitContext'
 
 export const metadata: Metadata = {
 	title: 'Starkregen',

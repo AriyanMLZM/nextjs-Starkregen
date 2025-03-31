@@ -1,4 +1,4 @@
-import { weatherApiAxios } from '@/config/weatherapiAxios'
+import { weatherApiAxios } from '@/configs/weatherapiAxios'
 
 export const getCities = async (query: string) => {
 	const params = {
@@ -24,7 +24,7 @@ export const getFullWeather = async (query: string) => {
 	const current: WeatherAPICurrent = await weatherApiAxios
 		.get('/current.json', { params: paramsCurrent })
 		.then((res) => res.data)
-		.catch((err) => console.error(err))
+		.catch((err) => console.log(err))
 
 	const paramsForecast = {
 		key: process.env.WEATHERAPI_APIKEY,
@@ -35,7 +35,7 @@ export const getFullWeather = async (query: string) => {
 	const { forecast }: { forecast: Forecast } = await weatherApiAxios
 		.get('/forecast.json', { params: paramsForecast })
 		.then((res) => res.data)
-		.catch((err) => console.error(err))
+		.catch((err) => console.log(err))
 
 	return { ...current, forecast }
 }
