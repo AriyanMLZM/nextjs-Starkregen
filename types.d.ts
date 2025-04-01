@@ -8,9 +8,10 @@ type City = {
 	url: string
 }
 
-interface WeatherAPICurrent {
+interface WeatherAPIResponse {
 	location: Location
 	current: Current
+	forecast: Forecast
 }
 
 interface Location {

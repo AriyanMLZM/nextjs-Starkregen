@@ -3,5 +3,6 @@ import Search from './Search'
 import Loader from './Loader'
 import UnitSwitcher from './UnitSwitcher'
 import Temp from './Temp'
+import DraggableList from './DraggableList'
 
-export { Navbar, Search, Loader, UnitSwitcher, Temp }
+export { Navbar, Search, Loader, UnitSwitcher, Temp, DraggableList }

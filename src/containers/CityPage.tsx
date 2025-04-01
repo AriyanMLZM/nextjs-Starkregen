@@ -1,9 +1,10 @@
-import { Current } from './'
+import { Current, ForecastDays } from './'
 
 const CityPage = () => {
 	return (
 		<>
 			<Current />
+			<ForecastDays />
 		</>
 	)
 }

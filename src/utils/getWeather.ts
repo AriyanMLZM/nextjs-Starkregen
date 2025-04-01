@@ -15,27 +15,17 @@ export const getCities = async (query: string) => {
 }
 
 export const getFullWeather = async (query: string) => {
-	const paramsCurrent = {
+	const params = {
 		key: process.env.WEATHERAPI_APIKEY,
 		q: query,
 		aqi: 'yes',
+		days: 7,
 	}
 
-	const current: WeatherAPICurrent = await weatherApiAxios
-		.get('/current.json', { params: paramsCurrent })
+	const fullWeather: { forecast: Forecast } = await weatherApiAxios
+		.get('/forecast.json', { params })
 		.then((res) => res.data)
 		.catch((err) => console.log(err))
 
-	const paramsForecast = {
-		key: process.env.WEATHERAPI_APIKEY,
-		q: query,
-		days: 5,
-	}
-
-	const { forecast }: { forecast: Forecast } = await weatherApiAxios
-		.get('/forecast.json', { params: paramsForecast })
-		.then((res) => res.data)
-		.catch((err) => console.log(err))
-
-	return { ...current, forecast }
+	return
 }
