@@ -11,7 +11,7 @@ type Props = {
 const Temp = ({ valueC, valueF, size }: Props) => {
 	const { isC } = useUnit()
 
-	return <span style={{ fontSize: size }}>&deg;{isC ? valueC : valueF}</span>
+	return <span style={{ fontSize: size }}>{isC ? valueC : valueF}&deg;</span>
 }
 
 export default Temp

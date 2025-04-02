@@ -1,4 +1,4 @@
-import { Temp } from '@/components'
+import { Day, Temp } from '@/components'
 import { location, current } from '@/constants/forecast.json'
 
 const Current = () => {
@@ -9,7 +9,7 @@ const Current = () => {
 					<h1 className="text-[2rem]">{location.name}</h1>
 					<h2 className="text-[0.9rem] mt-[10px]">{location.region}</h2>
 					<h2 className="text-[0.9rem]">{location.country}</h2>
-					<div className="text-[0.8rem] flex mt-[20px] gap-[20px]">
+					<div className="text-[0.8rem] flex mt-[10px] gap-[20px]">
 						<div>
 							<h2>lat</h2>
 							<span>{location.lat}</span>
@@ -19,11 +19,14 @@ const Current = () => {
 							<span>{location.lon}</span>
 						</div>
 					</div>
-					<p className="text-[0.8rem] mt-[20px]">
-						Have a pleasant <b>{current.is_day ? 'Day' : 'Night'}</b> !
-					</p>
+					<div className='mt-[10px]'>
+						<Day date={current.last_updated} size="0.9rem" />
+						<p className="text-[0.8rem]">
+							Have a pleasant <b>{current.is_day ? 'Day' : 'Night'}</b>!
+						</p>
+					</div>
 				</div>
-				<div className="flex flex-col justify-between">
+				<div className="flex flex-col">
 					<img
 						src={current.condition.icon}
 						alt="weather-icon"
