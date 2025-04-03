@@ -1,10 +1,12 @@
-import { Current, ForecastDays } from './'
+import { AirQ, Current, ForecastDays, ForecastHours } from './'
 
 const CityPage = () => {
 	return (
 		<>
 			<Current />
 			<ForecastDays />
+			<ForecastHours />
+			<AirQ />
 		</>
 	)
 }

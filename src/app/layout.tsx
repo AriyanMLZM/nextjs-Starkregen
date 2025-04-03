@@ -3,6 +3,7 @@ import './globals.css'
 import { Navbar } from '@/components'
 import { ReactQueryProvider } from '@/providers/ReactQuery'
 import { UnitProvider } from '@/contexts/UnitContext'
+import { Footer } from '@/containers'
 
 export const metadata: Metadata = {
 	title: 'Starkregen',
@@ -21,6 +22,7 @@ const RootLayout = ({
 					<UnitProvider>
 						<Navbar />
 						{children}
+						<Footer />
 					</UnitProvider>
 				</ReactQueryProvider>
 			</body>
