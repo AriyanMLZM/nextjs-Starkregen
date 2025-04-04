@@ -5,5 +5,15 @@ import ForecastDays from './ForecastDays'
 import ForecastHours from './ForecastHours'
 import AirQ from './AirQ'
 import Footer from './Footer'
+import HomePage from './HomePage'
 
-export { Navbar, CityPage, Current, ForecastDays, ForecastHours, AirQ, Footer }
+export {
+	Navbar,
+	CityPage,
+	Current,
+	ForecastDays,
+	ForecastHours,
+	AirQ,
+	Footer,
+	HomePage,
+}

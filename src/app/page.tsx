@@ -1,7 +1,7 @@
-const city = 'London'
+import { HomePage } from '@/containers'
 
 const Home = () => {
-	return <div>{city}</div>
+	return <HomePage />
 }
 
 export default Home
