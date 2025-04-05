@@ -1,9 +1,26 @@
-import { VerticalList } from '@/components'
+import { Location, VerticalList } from './'
+import { current } from '@/constants/forecast.json'
+
+const cities = [
+	{
+		name: 'Paris',
+		current,
+	},
+	{
+		name: 'London',
+		current,
+	},
+	{
+		name: 'Moscow',
+		current,
+	},
+]
 
 const HomePage = () => {
 	return (
 		<>
-			<VerticalList />
+			<Location />
+			<VerticalList cities={cities} />
 		</>
 	)
 }

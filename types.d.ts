@@ -1,3 +1,8 @@
+type Loc = {
+	lat: number
+	lon: number
+}
+
 type City = {
 	id: number
 	name: string
@@ -9,12 +14,12 @@ type City = {
 }
 
 interface WeatherAPIResponse {
-	location: Location
+	location: LocationRes
 	current: Current
 	forecast: Forecast
 }
 
-interface Location {
+interface LocationRes {
 	name: string
 	region: string
 	country: string

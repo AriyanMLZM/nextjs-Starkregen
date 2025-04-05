@@ -1,7 +1,11 @@
 import { Day, Temp } from '@/components'
-import { location, current } from '@/constants/forecast.json'
 
-const Current = () => {
+type Props = {
+	location: LocationRes
+	current: Current
+}
+
+const Current = ({ location, current }: Props) => {
 	return (
 		<section className="flex-center p-[20px]">
 			<div className="w-full flex justify-center gap-[30px]">
@@ -19,7 +23,7 @@ const Current = () => {
 							<span>{location.lon}</span>
 						</div>
 					</div>
-					<div className='mt-[10px]'>
+					<div className="mt-[10px]">
 						<Day date={current.last_updated} size="0.9rem" />
 						<p className="text-[0.8rem]">
 							Have a pleasant <b>{current.is_day ? 'Day' : 'Night'}</b>!

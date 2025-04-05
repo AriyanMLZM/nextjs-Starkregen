@@ -6,6 +6,8 @@ import ForecastHours from './ForecastHours'
 import AirQ from './AirQ'
 import Footer from './Footer'
 import HomePage from './HomePage'
+import VerticalList from './VerticalList'
+import Location from './Location'
 
 export {
 	Navbar,
@@ -16,4 +18,6 @@ export {
 	AirQ,
 	Footer,
 	HomePage,
+	VerticalList,
+	Location,
 }

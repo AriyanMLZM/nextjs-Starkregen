@@ -14,7 +14,7 @@ export const getCities = async (query: string) => {
 	return cities
 }
 
-export const getFullWeather = async (query: string) => {
+export const getWeather = async (query: string) => {
 	const params = {
 		key: process.env.WEATHERAPI_APIKEY,
 		q: query,
@@ -22,10 +22,25 @@ export const getFullWeather = async (query: string) => {
 		days: 7,
 	}
 
-	const fullWeather: { forecast: Forecast } = await weatherApiAxios
+	const weather: WeatherAPIResponse = await weatherApiAxios
 		.get('/forecast.json', { params })
 		.then((res) => res.data)
 		.catch((err) => console.log(err))
 
-	return
+	return weather
+}
+
+export const getLocation = async (loc: Loc) => {
+	const params = {
+		key: process.env.WEATHERAPI_APIKEY,
+		...loc,
+	}
+
+	const weather: { location: Location; current: Current } =
+		await weatherApiAxios
+			.get('/current.json', { params })
+			.then((res) => res.data)
+			.catch((err) => console.log(err))
+
+	return weather
 }
