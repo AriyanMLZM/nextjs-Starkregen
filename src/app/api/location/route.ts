@@ -9,9 +9,8 @@ export const GET = async (req: NextRequest) => {
 		lon: Number(searchParams.get('lon')),
 	}
 
-	const weather: { location: Location; current: Current } = await getLocation(
-		loc
-	)
+	const weather: { location: LocationRes; current: Current } =
+		await getLocation(loc)
 
 	return NextResponse.json(weather)
 }

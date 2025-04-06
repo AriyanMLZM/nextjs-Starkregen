@@ -3,6 +3,11 @@ type Loc = {
 	lon: number
 }
 
+type Cities = {
+	name: string
+	current: Current
+}[]
+
 type City = {
 	id: number
 	name: string

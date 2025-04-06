@@ -27,7 +27,7 @@ const Location = () => {
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ['locationData', loc],
 		queryFn: () => fetchLocation(loc as Loc),
-		enabled: !loc,
+		enabled: !!loc,
 	})
 
 	const handleLoc = (loc: Loc) => {
@@ -45,17 +45,21 @@ const Location = () => {
 	}, [])
 
 	return (
-		<section>
-			<div className="flex-center text-[0.7rem]">
-				{errorLoc ? (
-					<p>Your Location was Found.</p>
-				) : (
-					<p>Can't access your Location.</p>
-				)}
-			</div>
+		<section className="flex-center flex-col min-h-[350px]">
+			{data && (
+				<div className="flex-center text-[0.7rem]">
+					{!errorLoc ? (
+						<p>Your Location was Found.</p>
+					) : (
+						<p>Can't access your Location.</p>
+					)}
+				</div>
+			)}
 			{data && <Current current={data.current} location={data.location} />}
 			{isError && <p>Network Error!</p>}
-			{isLoading && <Loader height="50px" width="50px" size="20px" />}
+			{isLoading && (
+				<Loader height="100%" width="100%" size="40px" text="Location..." />
+			)}
 		</section>
 	)
 }

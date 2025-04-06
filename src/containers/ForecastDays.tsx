@@ -5,10 +5,19 @@ type DayItemProps = {
 	day: ForecastDay
 }
 
+type Props = {
+	forecastDay: ForecastDay[]
+}
+
 const DayItem = ({ day }: DayItemProps) => {
 	return (
 		<div className="min-w-[7rem] border-white flex-center flex-col">
-			<img draggable="false" src="/116.webp" alt="weather-icon" className="w-[3rem]" />
+			<img
+				draggable="false"
+				src="/116.webp"
+				alt="weather-icon"
+				className="w-[3rem]"
+			/>
 			<span className="flex gap-[10px]">
 				<Temp
 					size="0.8rem"
@@ -32,12 +41,12 @@ const DayItem = ({ day }: DayItemProps) => {
 	)
 }
 
-const ForecastDays = () => {
+const ForecastDays = ({ forecastDay }: Props) => {
 	return (
 		<section className="mt-[30px]">
 			<h2 className="flex-center text-[1.2rem]">2-Weeks Forecast</h2>
 			<DraggableList>
-				{forecast.forecastday.map((day) => (
+				{forecastDay.map((day) => (
 					<DayItem day={day} key={day.date} />
 				))}
 			</DraggableList>

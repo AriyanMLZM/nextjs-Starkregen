@@ -19,15 +19,14 @@ const Item = ({
 	setSearch: Dispatch<SetStateAction<string>>
 }) => {
 	return (
-		<div className="w-full p-[2px]">
-			<Link
+		<Link href={`/city/${item.name}`} className="w-full">
+			<div
 				onClick={() => setSearch('')}
-				href={`/city/${item.name}`}
-				className="text-[0.7rem] text-white"
+				className="text-[0.7rem] w-full text-white hover:opacity-50 px-[10px] py-[5px]"
 			>
-				span{item.name} - {item.region} - {item.country}
-			</Link>
-		</div>
+				{item.name} - {item.region} - {item.country}
+			</div>
+		</Link>
 	)
 }
 
@@ -63,7 +62,7 @@ const Search = () => {
 				</span>
 			)}
 			{data && (
-				<section className="w-[30%] min-w-[150px] max-w-[300px] bg-bgColor rounded absolute mt-[10px]">
+				<section className="w-[30%] min-w-[150px] max-w-[300px] bg-black/95 rounded absolute mt-[10px]">
 					{data.map((item) => (
 						<Item key={item.id} item={item} setSearch={setSearch} />
 					))}

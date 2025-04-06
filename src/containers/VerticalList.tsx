@@ -28,7 +28,11 @@ const Item = ({ city, ind }: ItemProps) => {
 					/>
 				</div>
 				<div>
-					<img src="/116.webp" alt="weather-icon" className="w-[4rem]" />
+					<img
+						src={city.current.condition.icon}
+						alt="weather-icon"
+						className="w-[4rem]"
+					/>
 				</div>
 			</div>
 
@@ -45,7 +49,7 @@ const VerticalList = ({ cities }: Props) => {
 		<section className="w-full flex-center">
 			<div className="w-[50%]">
 				{cities.map((city, ind) => (
-					<Item city={city} ind={ind} />
+					<Item city={city} ind={ind} key={ind} />
 				))}
 			</div>
 		</section>

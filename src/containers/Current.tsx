@@ -30,7 +30,7 @@ const Current = ({ location, current }: Props) => {
 						</p>
 					</div>
 				</div>
-				<div className="flex flex-col">
+				<div className="flex flex-col items-center">
 					<img
 						src={current.condition.icon}
 						alt="weather-icon"

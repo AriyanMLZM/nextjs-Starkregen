@@ -1,16 +1,22 @@
 import { Day, DraggableList, Temp } from '@/components'
-import { forecast } from '@/constants/forecast.json'
 
 type HourItemProps = {
 	hour: HourForecast
 }
 
-const hours = forecast.forecastday[0].hour
+type Props = {
+	hours: HourForecast[]
+}
 
 const HourItem = ({ hour }: HourItemProps) => {
 	return (
 		<div className="min-w-[7rem] border-white flex-center flex-col">
-			<img draggable="false" src="/116.webp" alt="weather-icon" className="w-[3rem]" />
+			<img
+				draggable="false"
+				src="/116.webp"
+				alt="weather-icon"
+				className="w-[3rem]"
+			/>
 			<Temp size="0.8rem" valueC={hour.temp_c} valueF={hour.temp_f} />
 			<h3 className="text-[0.9rem] mt-[10px] mb-[2px]">
 				{hour.time.split(' ')[1]}
@@ -24,11 +30,11 @@ const HourItem = ({ hour }: HourItemProps) => {
 	)
 }
 
-const ForecastHours = () => {
+const ForecastHours = ({ hours }: Props) => {
 	return (
 		<section className="mt-[30px]">
 			<h2 className="flex-center text-[1.2rem]">Hourly Forecast</h2>
-			<div className='flex-center flex-col mt-[10px] gap-[2px]'>
+			<div className="flex-center flex-col mt-[10px] gap-[2px]">
 				<Day date={hours[0].time} size="1rem" />
 				<span className="text-[0.8rem]">{hours[0].time.split(' ')[0]}</span>
 			</div>

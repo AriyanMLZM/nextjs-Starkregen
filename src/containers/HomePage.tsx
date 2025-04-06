@@ -1,22 +1,11 @@
 import { Location, VerticalList } from './'
 import { current } from '@/constants/forecast.json'
 
-const cities = [
-	{
-		name: 'Paris',
-		current,
-	},
-	{
-		name: 'London',
-		current,
-	},
-	{
-		name: 'Moscow',
-		current,
-	},
-]
+type Props = {
+	cities: Cities
+}
 
-const HomePage = () => {
+const HomePage = ({ cities }: Props) => {
 	return (
 		<>
 			<Location />

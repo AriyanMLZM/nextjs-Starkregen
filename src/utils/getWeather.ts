@@ -1,46 +1,62 @@
 import { weatherApiAxios } from '@/configs/weatherapiAxios'
+import forecastData from '@/constants/forecast.json'
+import citiesData from '@/constants/cities.json'
+
+const enApi: Boolean = Boolean(Number(process.env.ENAPI))
 
 export const getCities = async (query: string) => {
-	const params = {
-		key: process.env.WEATHERAPI_APIKEY,
-		q: query,
-	}
+	let cities: City[]
 
-	const cities: City[] = await weatherApiAxios
-		.get('/search.json', { params })
-		.then((res) => res.data)
-		.catch((err) => console.log(err))
+	if (enApi) {
+		const params = {
+			key: process.env.WEATHERAPI_APIKEY,
+			q: query,
+		}
+		cities = await weatherApiAxios
+			.get('/search.json', { params })
+			.then((res) => res.data)
+			.catch((err) => console.log(err))
+	} else cities = citiesData
 
 	return cities
 }
 
 export const getWeather = async (query: string) => {
-	const params = {
-		key: process.env.WEATHERAPI_APIKEY,
-		q: query,
-		aqi: 'yes',
-		days: 7,
-	}
+	let weather: WeatherAPIResponse
 
-	const weather: WeatherAPIResponse = await weatherApiAxios
-		.get('/forecast.json', { params })
-		.then((res) => res.data)
-		.catch((err) => console.log(err))
+	if (enApi) {
+		const params = {
+			key: process.env.WEATHERAPI_APIKEY,
+			q: query,
+			aqi: 'yes',
+			days: 7,
+		}
+		weather = await weatherApiAxios
+			.get('/forecast.json', { params })
+			.then((res) => res.data)
+			.catch((err) => console.log(err))
+	} else weather = forecastData
 
 	return weather
 }
 
 export const getLocation = async (loc: Loc) => {
-	const params = {
-		key: process.env.WEATHERAPI_APIKEY,
-		...loc,
-	}
+	let weather: { location: LocationRes; current: Current }
 
-	const weather: { location: Location; current: Current } =
-		await weatherApiAxios
+	if (enApi) {
+		const params = {
+			key: process.env.WEATHERAPI_APIKEY,
+			...loc,
+		}
+		weather = await weatherApiAxios
 			.get('/current.json', { params })
 			.then((res) => res.data)
 			.catch((err) => console.log(err))
+	} else
+		weather = {
+			current: forecastData.current,
+			location: forecastData.location,
+		}
 
 	return weather
 }
