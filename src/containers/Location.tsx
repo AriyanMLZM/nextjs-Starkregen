@@ -1,10 +1,13 @@
 'use client'
+
 import { useEffect, useState } from 'react'
 import { Current } from './'
 import geoLocation from '@/utils/geoLocation'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { Loader } from '@/components'
+import { Loader, Map } from '@/components'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
 
 const altLoc: Loc = {
 	lat: 29.6036,
@@ -45,21 +48,27 @@ const Location = () => {
 	}, [])
 
 	return (
-		<section className="flex-center flex-col min-h-[350px]">
-			{data && (
-				<div className="flex-center text-[0.7rem]">
-					{!errorLoc ? (
-						<p>Your Location was Found.</p>
-					) : (
-						<p>Can't access your Location.</p>
-					)}
-				</div>
-			)}
-			{data && <Current current={data.current} location={data.location} />}
-			{isError && <p>Network Error!</p>}
-			{isLoading && (
-				<Loader height="100%" width="100%" size="40px" text="Location..." />
-			)}
+		<section className="w-full flex flex-col md:flex-row justify-between lg:px-[17%] md:px-[10%] my-[20px]">
+			<div className="flex-center flex-col w-full">
+				{data && (
+					<div className="flex-center text-[0.7rem]">
+						{!errorLoc ? (
+							<p className="text-[0.8rem]">Your Location was Found.</p>
+						) : (
+							<p className="text-[0.8rem]">Can't access your Location.</p>
+						)}
+					</div>
+				)}
+				{data && <Current current={data.current} location={data.location} />}
+				{isError && <p className="text-[0.8rem]">Network Error!</p>}
+				{isLoading && (
+					<Loader height="100%" width="100%" size="40px" text="Location..." />
+				)}
+			</div>
+			<div className="flex flex-col gap-[10px]">
+				<h2 className="text-center text-[1.2rem]">Choose on Map</h2>
+				<Map loc={loc as Loc} enSelect handleLoc={handleLoc} />
+			</div>
 		</section>
 	)
 }
