@@ -14,9 +14,7 @@ const Item = ({ city, ind }: ItemProps) => {
 	return (
 		<div className={`flex ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}>
 			<div
-				className={`w-5/12 p-4 gap-[20px] flex ${
-					isLeft ? 'flex-row-reverse' : ''
-				}`}
+				className={`w-5/12 gap-[20px] flex ${isLeft ? 'flex-row-reverse' : ''}`}
 			>
 				<div className="flex flex-col gap-[2px]">
 					<h2 className="text-[1rem]">{city.name}</h2>
@@ -46,8 +44,8 @@ const Item = ({ city, ind }: ItemProps) => {
 
 const VerticalList = ({ cities }: Props) => {
 	return (
-		<section className="w-full flex-center">
-			<div className="w-[50%]">
+		<section className="w-full flex-center my-[60px]">
+			<div className="w-full">
 				{cities.map((city, ind) => (
 					<Item city={city} ind={ind} key={ind} />
 				))}

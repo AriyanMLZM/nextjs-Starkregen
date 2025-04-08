@@ -49,7 +49,7 @@ const Location = () => {
 
 	return (
 		<section className="w-full flex flex-col md:flex-row justify-between lg:px-[17%] md:px-[10%] my-[20px]">
-			<div className="flex-center flex-col w-full">
+			<div className="flex-center flex-col w-full min-h-[350px]">
 				{data && (
 					<div className="flex-center text-[0.7rem]">
 						{!errorLoc ? (

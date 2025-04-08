@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import {
 	MapContainer,
 	Marker,
+	Popup,
 	TileLayer,
 	useMap,
 	useMapEvent,
@@ -20,8 +21,7 @@ type Props = {
 }
 
 const greenIcon = new Icon({
-	iconUrl:
-		'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+	iconUrl: '/marker.png',
 	iconSize: [20, 35],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
@@ -47,12 +47,23 @@ const Map = ({ isDark, enSelect, loc, handleLoc }: Props) => {
 	return (
 		<MapContainer
 			center={[29, 29]}
-			zoom={15}
+			zoom={10}
 			scrollWheelZoom={true}
-			style={{ height: '110%', width: '100%', zIndex: 0 }}
+			style={{
+				height: '110%',
+				width: '100%',
+				zIndex: 0,
+				background: isDark ? '#222' : '',
+			}}
 			zoomControl={false}
 		>
-			<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+			<TileLayer
+				url={
+					isDark
+						? 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png'
+						: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+				}
+			/>
 			<Marker position={[loc.lat, loc.lon]} icon={greenIcon}></Marker>
 			{enSelect && handleLoc && <MovingMarker handleLoc={handleLoc} />}
 			<Recenter loc={loc} />

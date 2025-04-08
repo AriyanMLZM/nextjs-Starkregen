@@ -22,7 +22,7 @@ const Map = ({ loc, enSelect, handleLoc }: Props) => {
 					handleLoc={handleLoc}
 				/>
 			</div>
-			<h3 className="select-none font-[Tektur] translate-y-[-20px] text-black text-[0.7rem]">
+			<h3 className="select-none font-[Tektur] translate-y-[-20px] text-[0.7rem]">
 				Starkregen
 			</h3>
 		</div>
