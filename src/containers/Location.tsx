@@ -31,6 +31,7 @@ const Location = () => {
 		queryKey: ['locationData', loc],
 		queryFn: () => fetchLocation(loc as Loc),
 		enabled: !!loc,
+		staleTime: Infinity,
 	})
 
 	const handleLoc = (loc: Loc) => {
@@ -65,10 +66,12 @@ const Location = () => {
 					<Loader height="100%" width="100%" size="40px" text="Location..." />
 				)}
 			</div>
-			<div className="flex flex-col gap-[10px]">
-				<h2 className="text-center text-[1.2rem]">Choose on Map</h2>
-				<Map loc={loc as Loc} enSelect handleLoc={handleLoc} />
-			</div>
+			{loc && (
+				<div className="flex flex-col gap-[10px]">
+					<h2 className="text-center text-[1.2rem]">Choose on Map</h2>
+					<Map loc={loc} enSelect handleLoc={handleLoc} />
+				</div>
+			)}
 		</section>
 	)
 }

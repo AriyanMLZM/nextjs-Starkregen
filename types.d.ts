@@ -8,6 +8,13 @@ type Cities = {
 	current: Current
 }[]
 
+type ShortWeatherData = {
+	name: string
+	icon: string
+	valueC: number
+	valueF: number
+}
+
 type City = {
 	id: number
 	name: string

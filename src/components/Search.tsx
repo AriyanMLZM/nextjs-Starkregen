@@ -36,7 +36,8 @@ const Search = () => {
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ['searchData', search],
 		queryFn: () => fetchSearch(search),
-		enabled: !!search,
+		enabled: search.length > 2,
+		staleTime: Infinity,
 	})
 
 	return (

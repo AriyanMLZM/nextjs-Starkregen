@@ -1,26 +1,33 @@
 'use client'
-import { useEffect } from 'react'
+import { RefObject, useEffect, useRef, useState } from 'react'
 import {
 	MapContainer,
 	Marker,
-	Popup,
 	TileLayer,
 	useMap,
 	useMapEvent,
+	Popup,
 } from 'react-leaflet'
-import { Icon } from 'leaflet'
+import { Icon, Marker as MarkerType, Popup as PopupType } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
+import { Temp } from './'
 
 type Props = {
 	isDark: boolean
 	loc: Loc
 	enSelect: boolean
+	weatherData?: ShortWeatherData
 	handleLoc?: (loc: Loc) => void
 }
 
-const greenIcon = new Icon({
+type MarkerCompProps = {
+	weatherData?: ShortWeatherData
+	loc: Loc
+}
+
+const blackIcon = new Icon({
 	iconUrl: '/marker.png',
 	iconSize: [20, 35],
 	iconAnchor: [12, 41],
@@ -32,7 +39,8 @@ const Recenter = ({ loc }: { loc: Loc }) => {
 	const map = useMap()
 	useEffect(() => {
 		map.setView([loc.lat, loc.lon])
-	}, [])
+	}, [loc])
+
 	return null
 }
 
@@ -43,7 +51,39 @@ const MovingMarker = ({ handleLoc }: { handleLoc: (loc: Loc) => void }) => {
 	return null
 }
 
-const Map = ({ isDark, enSelect, loc, handleLoc }: Props) => {
+const MarkerComp = ({ weatherData, loc }: MarkerCompProps) => {
+	const refMarker = useRef<MarkerType>(null)
+
+	useEffect(() => {
+		if (refMarker.current) refMarker.current.openPopup()
+	}, [])
+
+	return (
+		<Marker ref={refMarker} position={[loc.lat, loc.lon]} icon={blackIcon}>
+			{weatherData && (
+				<Popup>
+					<div className="flex-center flex-col">
+						<h3 className="text-[0.8rem]">{weatherData.name}</h3>
+						<div className='flex-center'>
+							<img
+								className="w-[2rem]"
+								src={weatherData.icon}
+								alt="weather-icon"
+							/>
+							<Temp
+								size="0.8rem"
+								valueC={weatherData.valueC}
+								valueF={weatherData.valueF}
+							/>
+						</div>
+					</div>
+				</Popup>
+			)}
+		</Marker>
+	)
+}
+
+const Map = ({ isDark, enSelect, loc, weatherData, handleLoc }: Props) => {
 	return (
 		<MapContainer
 			center={[29, 29]}
@@ -64,9 +104,9 @@ const Map = ({ isDark, enSelect, loc, handleLoc }: Props) => {
 						: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 				}
 			/>
-			<Marker position={[loc.lat, loc.lon]} icon={greenIcon}></Marker>
-			{enSelect && handleLoc && <MovingMarker handleLoc={handleLoc} />}
 			<Recenter loc={loc} />
+			<MarkerComp weatherData={weatherData} loc={loc} />
+			{enSelect && handleLoc && <MovingMarker handleLoc={handleLoc} />}
 		</MapContainer>
 	)
 }
