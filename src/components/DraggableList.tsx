@@ -1,4 +1,5 @@
 'use client'
+import { withAnimationUpSlide } from '@/hoc/withAnimation'
 import { motion, useMotionValue } from 'framer-motion'
 import { useRef, useEffect, useState, ReactNode } from 'react'
 
@@ -55,4 +56,4 @@ const DraggableList = ({ children }: Props) => {
 	)
 }
 
-export default DraggableList
+export default withAnimationUpSlide(DraggableList)

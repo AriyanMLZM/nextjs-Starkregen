@@ -1,5 +1,4 @@
 import { Location, VerticalList } from './'
-import { current } from '@/constants/forecast.json'
 
 type Props = {
 	cities: Cities

@@ -6,8 +6,6 @@ import geoLocation from '@/utils/geoLocation'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { Loader, Map } from '@/components'
-import dynamic from 'next/dynamic'
-import Link from 'next/link'
 
 const altLoc: Loc = {
 	lat: 29.6036,

@@ -1,4 +1,5 @@
 'use client'
+import { withAnimationRightSlide } from '@/hoc/withAnimation'
 import dynamic from 'next/dynamic'
 
 const DynamicMap = dynamic(() => import('./Map'), {
@@ -25,4 +26,4 @@ const Map = (props: Props) => {
 	)
 }
 
-export default Map
+export default withAnimationRightSlide(Map)

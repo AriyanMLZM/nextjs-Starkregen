@@ -1,5 +1,4 @@
 import { Day, DraggableList, Temp } from '@/components'
-import { forecast } from '@/constants/forecast.json'
 
 type DayItemProps = {
 	day: ForecastDay
