@@ -3,7 +3,7 @@ import { AirQ, Current, ForecastDays, ForecastHours } from './'
 import { IconBack } from '@/icons'
 import { Map } from '@/components'
 
-type Props = {
+interface Props {
 	forecast: WeatherAPIResponse
 }
 
@@ -15,7 +15,7 @@ const CityPage = ({ forecast }: Props) => {
 					<IconBack className="w-full h-full" />
 				</Link>
 			</div>
-			<section className="flex-center flex-col md:flex-row gap-[50px] my-[40px]">
+			<section className="flex-center flex-col md:flex-row gap-[50px] my-[40px] overflow-hidden">
 				<Current location={forecast.location} current={forecast.current} />
 				<Map
 					enSelect={false}

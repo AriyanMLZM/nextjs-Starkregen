@@ -65,7 +65,7 @@ const Location = () => {
 				)}
 			</div>
 			{loc && (
-				<div className="flex flex-col gap-[10px]">
+				<div className="flex w-full flex-col gap-[10px] overflow-hidden">
 					<h2 className="text-center text-[1.2rem]">Choose on Map</h2>
 					<Map loc={loc} enSelect handleLoc={handleLoc} />
 				</div>
