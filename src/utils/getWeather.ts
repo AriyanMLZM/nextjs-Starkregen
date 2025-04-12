@@ -46,7 +46,7 @@ export const getLocation = async (loc: Loc) => {
 	if (enApi) {
 		const params = {
 			key: process.env.WEATHERAPI_APIKEY,
-			...loc,
+			q: `${loc.lat},${loc.lon}`,
 		}
 		weather = await weatherApiAxios
 			.get('/current.json', { params })
