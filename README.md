@@ -1,16 +1,43 @@
 # Starkregen - Weather App
 
-The weather app created with **next.js v15** using **weatherapi**.
+The weather app created with **Next.js v15** using **Weatherapi**.
+
+- Get Current Weather, 2 Weeks Forecast, Hourly Forecast and Air Quality
+- Search location
+- Select location on map
 
 ## Techs
 
-- Next.js
-- Tailwindcss
-- Typescript
-- Leaflet.js
-- Framer Motion
-- Axios
-- React Query
+<table>
+  <tr align="center">
+    <td>Next.js</td>
+    <td>React.js</td>
+    <td>Typescript</td>
+  </tr>
+  <tr align="center">
+    <td><img src="https://i.postimg.cc/D07nJ6RW/next.png" width="40px" /></td>
+    <td><img  src="https://i.postimg.cc/7LR71cSh/react.png" width="35px"/></td>
+    <td><img src="https://i.postimg.cc/wjnzcgSY/ts.png" width="33px" /></td>
+  </tr>
+  <tr align="center">
+    <td>Tailwindcss</td>
+    <td>Framer Motion</td>
+    <td>Leaflet.js</td>
+  </tr>
+  <tr align="center">
+    <td><img src="https://i.postimg.cc/3NTknHN8/tailwind.png" width="40px" /></td>
+    <td><img  src="https://i.postimg.cc/8k0c7QtM/framer-motion.png" width="35px"/></td>
+    <td><img src="https://i.postimg.cc/C5XxXkzm/leaflet.png" width="60px" /></td>
+  </tr>
+  <tr align="center">
+    <td>React Query</td>
+    <td>Axios</td>
+  </tr>
+  <tr align="center">
+    <td><img src="https://i.postimg.cc/Jn5WLJtR/react-query.png" width="40px" /></td>
+    <td><img  src="https://i.postimg.cc/wBPkjbyV/axios.png" width="60px"/></td>
+  </tr>
+</table>
 
 ## Features
 
