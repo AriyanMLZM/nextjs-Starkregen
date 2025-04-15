@@ -43,7 +43,7 @@ const DayItem = ({ day }: DayItemProps) => {
 const ForecastDays = ({ forecastDay }: Props) => {
 	return (
 		<section className="mt-[30px]">
-			<h2 className="flex-center text-[1.2rem]">2-Weeks Forecast</h2>
+			<h2 className="flex-center text-[1.2rem]">Daily Forecast</h2>
 			<DraggableList>
 				{forecastDay.map((day) => (
 					<DayItem day={day} key={day.date} />

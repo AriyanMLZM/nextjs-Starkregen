@@ -29,7 +29,7 @@ export const getWeather = async (query: string) => {
 			key: process.env.WEATHERAPI_APIKEY,
 			q: query,
 			aqi: 'yes',
-			days: 7,
+			days: 3,
 		}
 		weather = await weatherApiAxios
 			.get('/forecast.json', { params })

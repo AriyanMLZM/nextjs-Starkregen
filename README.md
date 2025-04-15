@@ -2,7 +2,7 @@
 
 The weather app created with **Next.js v15** using **Weatherapi**.
 
-- Get Current Weather, 2 Weeks Forecast, Hourly Forecast and Air Quality
+- Get Current Weather, Daily Forecast, Hourly Forecast and Air Quality
 - Search location
 - Select location on map
 
@@ -32,10 +32,12 @@ The weather app created with **Next.js v15** using **Weatherapi**.
   <tr align="center">
     <td>React Query</td>
     <td>Axios</td>
+    <td>React Icons</td>
   </tr>
   <tr align="center">
     <td><img src="https://i.postimg.cc/Jn5WLJtR/react-query.png" width="40px" /></td>
     <td><img  src="https://i.postimg.cc/wBPkjbyV/axios.png" width="60px"/></td>
+    <td><img  src="https://i.postimg.cc/YqFvhqVW/react-icons.png" width="40px"/></td>
   </tr>
 </table>
 
@@ -49,6 +51,7 @@ The weather app created with **Next.js v15** using **Weatherapi**.
 - Using **Context Api** for state management.
 - Using **Axios Instance** for handling all the requests faster and better.
 - Using **Next Api Routes** to handle client side requests safely.
+- Using **React Icons** for flexible icons.
 
 ## Usage
 
@@ -63,3 +66,7 @@ Copy the .env.local.example to .env.local and add your own values.
   values:
   - 0: disable
   - 1: enable
+
+##
+
+[![](https://i.postimg.cc/pTq6WPjr/card.png)](https://github.com/AriyanMLZM)

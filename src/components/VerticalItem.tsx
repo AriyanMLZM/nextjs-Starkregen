@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 
 import { Temp } from './'
+import Link from 'next/link'
 
 interface ItemProps {
 	city: { name: string; current: Current }
@@ -22,8 +23,8 @@ const VerticalItem = ({ city, ind }: ItemProps) => {
 				x: 0,
 			}}
 			transition={{
-        duration: 0.5,
-        delay: 0.1
+				duration: 0.5,
+				delay: 0.1,
 			}}
 			className={`flex ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
 		>
@@ -33,7 +34,9 @@ const VerticalItem = ({ city, ind }: ItemProps) => {
 				}`}
 			>
 				<div className="flex flex-col gap-[2px]">
-					<h2 className="text-[1rem]">{city.name}</h2>
+					<Link href={`/city/${city.name}`}>
+						<h2 className="text-[1rem]">{city.name}</h2>
+					</Link>
 					<h3 className="text-[0.8rem]">{city.current.condition.text}</h3>
 					<Temp
 						valueC={city.current.temp_c}
