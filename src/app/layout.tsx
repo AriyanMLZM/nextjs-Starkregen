@@ -7,7 +7,11 @@ import { Footer } from '@/containers'
 
 export const metadata: Metadata = {
 	title: 'Starkregen',
-	description: 'Know the Weather of Everywhere',
+	description: 'Know the Weather of Anywhere',
+	authors: [{ name: 'Ariyan Molazem', url: 'https://ariyanmolazem.ir' }],
+	creator: 'Ariyan Molazem',
+	applicationName: 'Starkregen',
+	keywords: ['weather app', 'next.js', 'weather api', 'forecast weather app'],
 }
 
 const RootLayout = ({

@@ -45,9 +45,10 @@ The weather app created with **Next.js v15** using **Weatherapi**.
 
 - Implementing both **server side** and **client side** fetching data.
 - **Pre-rendering** elements using next.js power and **high SEO**.
+- Implementing customized map with **Leaflet**.
+- Generating Dynamic Metadata based on the page.
 - Using **React Query** power on client side fetching.
 - Using **Framer Motion** for smooth animations and implementing withAnimation **HOCs**.
-- Implementing customized map with **Leaflet**.
 - Using **Context Api** for state management.
 - Using **Axios Instance** for handling all the requests faster and better.
 - Using **Next Api Routes** to handle client side requests safely.
