@@ -7,40 +7,46 @@
 	--color-bgColor: #0a0a0a;
 }
 
-html {
-	@apply text-[15px]
-  sm:text-[17px] 
-  md:text-[20px]
-	font-[Poppins]
-	text-white
-	bg-bgColor;
+@layer base {
+	html {
+		@apply text-[15px]
+		sm:text-[17px] 
+		md:text-[20px]
+		font-[Poppins]
+		text-white
+		bg-bgColor;
+	}
 }
 
-.flex-center {
-	@apply flex
-  justify-center
-  items-center;
+@layer components {
+	.t-input {
+		@apply pr-[25px]
+		pl-[10px] 
+		py-[5px] 
+		ring-[0.5px]
+		ring-white 
+		rounded-[10px] 
+		focus:outline-none
+		w-full
+		text-[0.7rem]
+		text-white;
+	}
 }
 
-.t-input {
-	@apply pr-[25px]
-	pl-[10px] 
-	py-[5px] 
-	ring-[0.5px]
-	ring-white 
-	rounded-[10px] 
-	focus:outline-none
-  w-full
-  text-[0.7rem]
-  text-white;
+@layer utilities {
+	.flex-center {
+		@apply flex
+		justify-center
+		items-center;
+	}
 }
 
 /* Hide scrollbar but keep functionality */
 .hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari and Opera */
+	display: none; /* Chrome, Safari and Opera */
 }
