@@ -14,10 +14,18 @@ const altLoc: Loc = {
 
 const fetchLocation = async (loc: Loc) => {
 	const params = { ...loc }
-	const { data }: { data: { location: LocationRes; current: Current } } =
-		await axios.get(`/api/location`, {
+
+	console.log('test')
+
+	const data: { location: LocationRes; current: Current } = await axios
+		.get(`/api/location`, {
 			params,
 		})
+		.then((res) => res.data)
+		.catch(() => {
+			throw new Error('Network Error!')
+		})
+
 	return data
 }
 
@@ -25,14 +33,16 @@ const Location = () => {
 	const [loc, setLoc] = useState<Loc | null>(null)
 	const [errorLoc, setErrorLoc] = useState<boolean>(false)
 
-	const { data, isLoading, isError } = useQuery({
+	const { data, isLoading, isError, error } = useQuery({
 		queryKey: ['locationData', loc],
 		queryFn: () => fetchLocation(loc as Loc),
 		enabled: !!loc,
 		staleTime: Infinity,
+		networkMode: 'always',
 	})
 
 	const handleLoc = (loc: Loc) => {
+		console.log('handle')
 		setLoc(loc)
 	}
 
@@ -59,7 +69,7 @@ const Location = () => {
 					</div>
 				)}
 				{data && <Current current={data.current} location={data.location} />}
-				{isError && <p className="text-[0.8rem]">Network Error!</p>}
+				{isError && <p className="text-[0.8rem]">{error.message}</p>}
 				{isLoading && (
 					<Loader height="100%" width="100%" size="40px" text="Location..." />
 				)}

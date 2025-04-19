@@ -15,7 +15,7 @@ export const getCities = async (query: string) => {
 		cities = await weatherApiAxios
 			.get('/search.json', { params })
 			.then((res) => res.data)
-			.catch((err) => {
+			.catch(() => {
 				throw new Error('Network Error!')
 			})
 	} else cities = citiesData
@@ -36,7 +36,7 @@ export const getWeather = async (query: string) => {
 		weather = await weatherApiAxios
 			.get('/forecast.json', { params })
 			.then((res) => res.data)
-			.catch((err) => {
+			.catch(() => {
 				throw new Error('Network Error!')
 			})
 	} else weather = forecastData
@@ -55,7 +55,7 @@ export const getLocation = async (loc: Loc) => {
 		weather = await weatherApiAxios
 			.get('/current.json', { params })
 			.then((res) => res.data)
-			.catch((err) => {
+			.catch(() => {
 				throw new Error('Network Error!')
 			})
 	} else
