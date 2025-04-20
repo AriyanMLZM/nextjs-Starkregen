@@ -7,7 +7,13 @@ import { Loader } from './'
 import Link from 'next/link'
 
 const fetchSearch = async (search: string) => {
-	const { data }: { data: City[] } = await axios.get(`/api/search/${search}`)
+	const data: City[] = await axios
+		.get(`/api/search/${search}`)
+		.then((res) => res.data)
+		.catch(() => {
+			throw new Error('Network Error!')
+		})
+
 	return data
 }
 
@@ -33,11 +39,12 @@ const Item = ({
 const Search = () => {
 	const [search, setSearch] = useState<string>('')
 
-	const { data, isLoading, isError } = useQuery({
+	const { data, isLoading, isError, error } = useQuery({
 		queryKey: ['searchData', search],
 		queryFn: () => fetchSearch(search),
 		enabled: search.length > 2,
 		staleTime: Infinity,
+		networkMode: 'always',
 	})
 
 	return (
@@ -59,7 +66,7 @@ const Search = () => {
 			)}
 			{isError && (
 				<span className="text-white text-[0.8rem] p-[10px] h-[20px] mt-[10px] absolute">
-					Network error!
+					{error.message}
 				</span>
 			)}
 			{data && (
