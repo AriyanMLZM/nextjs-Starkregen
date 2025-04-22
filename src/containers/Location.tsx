@@ -6,6 +6,7 @@ import geoLocation from '@/utils/geoLocation'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { Loader, Map } from '@/components'
+import { InfoIcon } from '@/icons'
 
 const altLoc: Loc = {
 	lat: 29.6036,
@@ -14,8 +15,6 @@ const altLoc: Loc = {
 
 const fetchLocation = async (loc: Loc) => {
 	const params = { ...loc }
-
-	console.log('test')
 
 	const data: { location: LocationRes; current: Current } = await axios
 		.get(`/api/location`, {
@@ -37,12 +36,15 @@ const Location = () => {
 		queryKey: ['locationData', loc],
 		queryFn: () => fetchLocation(loc as Loc),
 		enabled: !!loc,
-		staleTime: Infinity,
+		staleTime: 0,
+		refetchOnMount: false,
+		refetchOnWindowFocus: false,
+		refetchOnReconnect: true,
 		networkMode: 'always',
+		retry: 1,
 	})
 
 	const handleLoc = (loc: Loc) => {
-		console.log('handle')
 		setLoc(loc)
 	}
 
@@ -60,7 +62,8 @@ const Location = () => {
 		<section className="w-full flex flex-col md:flex-row justify-between lg:px-[17%] md:px-[10%] my-[20px]">
 			<div className="flex-center flex-col w-full min-h-[350px]">
 				{data && (
-					<div className="flex-center text-[0.7rem]">
+					<div className="flex items-center gap-[10px] w-full text-[0.7rem]">
+						<InfoIcon className="text-[1.2em]" />
 						{!errorLoc ? (
 							<p className="text-[0.8rem]">Your Location was Found.</p>
 						) : (

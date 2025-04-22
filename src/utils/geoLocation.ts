@@ -9,7 +9,7 @@ const geoLocation: () => Loc | null = () => {
 				}
 			},
 			() => {
-				console.log('Location not found!')
+				console.log("Can't access your location!")
 				return null
 			}
 		)

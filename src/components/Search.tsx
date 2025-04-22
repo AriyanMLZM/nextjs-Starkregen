@@ -43,8 +43,12 @@ const Search = () => {
 		queryKey: ['searchData', search],
 		queryFn: () => fetchSearch(search),
 		enabled: search.length > 2,
-		staleTime: Infinity,
+		staleTime: 24 * 60 * 60 * 1000, // 1 day
 		networkMode: 'always',
+		refetchOnMount: false,
+		refetchOnReconnect: true,
+		refetchOnWindowFocus: false,
+		retry: 1
 	})
 
 	return (
