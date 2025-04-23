@@ -100,7 +100,7 @@ const Map = ({ isDark, enSelect, loc, weatherData, handleLoc }: Props) => {
 			<TileLayer
 				url={
 					isDark
-						? `https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png`
+						? `https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png${process.env.NEXT_PUBLIC_STADIAMAPS_API_KEY}`
 						: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 				}
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>'
