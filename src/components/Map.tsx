@@ -64,7 +64,7 @@ const MarkerComp = ({ weatherData, loc }: MarkerCompProps) => {
 				<Popup>
 					<div className="flex-center flex-col">
 						<h3 className="text-[0.8rem]">{weatherData.name}</h3>
-						<div className='flex-center'>
+						<div className="flex-center">
 							<img
 								className="w-[2rem]"
 								src={weatherData.icon}
@@ -103,6 +103,7 @@ const Map = ({ isDark, enSelect, loc, weatherData, handleLoc }: Props) => {
 						? 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png'
 						: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 				}
+				crossOrigin
 			/>
 			<Recenter loc={loc} />
 			<MarkerComp weatherData={weatherData} loc={loc} />
