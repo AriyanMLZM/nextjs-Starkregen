@@ -59,15 +59,15 @@ const Location = () => {
 	}, [])
 
 	return (
-		<section className="w-full flex flex-col md:flex-row justify-between lg:px-[17%] md:px-[10%] my-[20px]">
+		<section className="w-full flex flex-col md:flex-row lg:px-[17%] md:px-[10%] my-[20px]">
 			<div className="flex-center flex-col w-full min-h-[350px]">
 				{data && (
-					<div className="flex items-center gap-[10px] w-full text-[0.7rem]">
+					<div className="flex-center gap-[10px] w-full text-[0.7rem]">
 						<InfoIcon className="text-[1.2em]" />
 						{!errorLoc ? (
-							<p className="text-[0.8rem]">Your Location was Found.</p>
+							<p className="text-[0.8rem]">Your current location was Found.</p>
 						) : (
-							<p className="text-[0.8rem]">Can't access your Location.</p>
+							<p className="text-[0.8rem]">Can't access your current location.</p>
 						)}
 					</div>
 				)}

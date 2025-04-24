@@ -29,8 +29,10 @@ const VerticalItem = ({ city, ind }: ItemProps) => {
 			className={`flex ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
 		>
 			<div
-				className={`w-5/12 gap-[10px] py-[20px] flex ${
-					isLeft ? 'flex-row-reverse' : ''
+				className={`w-5/12 md:gap-[20px] py-[20px] flex flex-col ${
+					isLeft
+						? 'items-end justify-center md:flex-row-reverse md:items-start md:justify-normal'
+						: 'md:flex-row'
 				}`}
 			>
 				<div className="flex flex-col gap-[2px]">
