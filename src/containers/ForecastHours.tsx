@@ -13,7 +13,7 @@ const HourItem = ({ hour }: HourItemProps) => {
 		<div className="min-w-[7rem] border-white flex-center flex-col">
 			<img
 				draggable="false"
-				src="/116.webp"
+				src={hour.condition.icon}
 				alt="weather-icon"
 				className="w-[3rem]"
 			/>

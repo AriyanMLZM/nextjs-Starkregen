@@ -30,7 +30,7 @@ const CityPage = ({ forecast }: Props) => {
 			</section>
 			<ForecastDays forecastDay={forecast.forecast.forecastday} />
 			<ForecastHours hours={forecast.forecast.forecastday[0].hour} />
-			<AirQ />
+			<AirQ airQ={forecast.current.air_quality} />
 		</>
 	)
 }

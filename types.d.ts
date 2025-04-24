@@ -66,7 +66,7 @@ interface Current {
 	uv: number
 	gust_mph: number
 	gust_kph: number
-	air_quality?: AirQuality
+	air_quality: AirQuality
 }
 
 interface Condition {

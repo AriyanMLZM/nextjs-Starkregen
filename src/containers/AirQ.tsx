@@ -1,8 +1,3 @@
-import { current } from '@/constants/forecast.json'
-import { div } from 'framer-motion/client'
-
-const airQ: AirQuality = current.air_quality
-
 const qIndex: Record<number, { text: string; color: string }> = {
 	1: { text: 'Good', color: '#7bff48' },
 	2: { text: 'Moderate', color: '#487bff' },
@@ -30,7 +25,7 @@ const Item = ({ title, value, sub }: ItemProps) => {
 	)
 }
 
-const AirQ = () => {
+const AirQ = ({ airQ }: { airQ: AirQuality }) => {
 	return (
 		<section className="mt-[30px]">
 			<h2 className="flex-center text-[1.2rem]">Air Quality</h2>
@@ -43,7 +38,7 @@ const AirQ = () => {
 					{qIndex[airQ['us-epa-index']].text}
 				</span>
 			</h3>
-			<div className='flex-center gap-[20px] mt-[10px]'>
+			<div className="flex-center gap-[20px] mt-[10px]">
 				<Item value={airQ.pm2_5} title="PM2_5" />
 				<Item value={airQ.pm10} title="PM10" />
 				<Item value={airQ.so2} title="SO" sub="2" />
