@@ -48,15 +48,15 @@ const Location = () => {
 		setLoc(loc)
 	}
 
-	useEffect(() => {
+	const handleCurrentLocation = () => {
 		const location: Loc | null = geoLocation()
-
 		if (location) handleLoc(location)
 		else {
 			handleLoc(altLoc)
 			setErrorLoc(true)
 		}
-	}, [])
+	}
+	useEffect(() => handleCurrentLocation(), [])
 
 	return (
 		<section className="w-full flex flex-col md:flex-row lg:px-[17%] md:px-[10%] my-[20px]">
@@ -67,7 +67,16 @@ const Location = () => {
 						{!errorLoc ? (
 							<p className="text-[0.8rem]">Your current location was Found.</p>
 						) : (
-							<p className="text-[0.8rem]">Can't access your current location.</p>
+							<p className="text-[0.8rem]">
+								Can't access your current location.
+								<button
+									className="ml-[10px] text-[0.8em] cursor-pointer"
+									type="button"
+									onClick={handleCurrentLocation}
+								>
+									Try again
+								</button>
+							</p>
 						)}
 					</div>
 				)}
