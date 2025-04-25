@@ -30,7 +30,7 @@ const fetchLocation = async (loc: Loc) => {
 const Location = () => {
 	const [loc, setLoc] = useState<Loc | null>(null)
 	const [errorLoc, setErrorLoc] = useState<boolean>(false)
-	const [loadingLoc, setLoadingLoc] = useState<boolean>(false)
+	const [loadingCurrentLoc, setLoadingCurrentLoc] = useState<boolean>(false)
 
 	const { data, isLoading, isError, error } = useQuery({
 		queryKey: ['locationData', loc],
@@ -49,11 +49,12 @@ const Location = () => {
 	}
 
 	const handleCurrentLocation = () => {
-		setLoadingLoc(true)
+		setLoadingCurrentLoc(true)
 		if (!navigator.geolocation) {
 			console.log('geolocation not available!')
 			setErrorLoc(true)
-			setLoadingLoc(false)
+			setLoadingCurrentLoc(false)
+			handleLoc(altLoc)
 			return
 		}
 
@@ -63,12 +64,18 @@ const Location = () => {
 					lat: pos.coords.latitude,
 					lon: pos.coords.longitude,
 				})
-				setLoadingLoc(false)
+				setLoadingCurrentLoc(false)
 			},
 			(err) => {
 				console.log("Can't access your location!", err.message)
 				setErrorLoc(true)
-				setLoadingLoc(false)
+				setLoadingCurrentLoc(false)
+				handleLoc(altLoc)
+			},
+			{
+				timeout: 5000,
+				enableHighAccuracy: true,
+				maximumAge: 0,
 			}
 		)
 	}
@@ -103,15 +110,15 @@ const Location = () => {
 						height="100%"
 						width="100%"
 						size="40px"
-						text="Loading location..."
+						text="Loading Location..."
 					/>
 				)}
-				{loadingLoc && (
+				{loadingCurrentLoc && (
 					<Loader
 						height="100%"
 						width="100%"
 						size="40px"
-						text="Accessing your location..."
+						text="Accessing Current Location..."
 					/>
 				)}
 			</div>
