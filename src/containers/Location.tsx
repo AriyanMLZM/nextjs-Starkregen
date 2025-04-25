@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { Current } from './'
-import geoLocation from '@/utils/geoLocation'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { Loader, Map } from '@/components'
@@ -31,6 +30,7 @@ const fetchLocation = async (loc: Loc) => {
 const Location = () => {
 	const [loc, setLoc] = useState<Loc | null>(null)
 	const [errorLoc, setErrorLoc] = useState<boolean>(false)
+	const [loadingLoc, setLoadingLoc] = useState<boolean>(false)
 
 	const { data, isLoading, isError, error } = useQuery({
 		queryKey: ['locationData', loc],
@@ -49,12 +49,28 @@ const Location = () => {
 	}
 
 	const handleCurrentLocation = () => {
-		const location: Loc | null = geoLocation()
-		if (location) handleLoc(location)
-		else {
-			handleLoc(altLoc)
+		setLoadingLoc(true)
+		if (!navigator.geolocation) {
+			console.log('geolocation not available!')
 			setErrorLoc(true)
+			setLoadingLoc(false)
+			return
 		}
+
+		navigator.geolocation.getCurrentPosition(
+			(pos) => {
+				handleLoc({
+					lat: pos.coords.latitude,
+					lon: pos.coords.longitude,
+				})
+				setLoadingLoc(false)
+			},
+			(err) => {
+				console.log("Can't access your location!", err.message)
+				setErrorLoc(true)
+				setLoadingLoc(false)
+			}
+		)
 	}
 	useEffect(() => handleCurrentLocation(), [])
 
@@ -83,7 +99,20 @@ const Location = () => {
 				{data && <Current current={data.current} location={data.location} />}
 				{isError && <p className="text-[0.8rem]">{error.message}</p>}
 				{isLoading && (
-					<Loader height="100%" width="100%" size="40px" text="Location..." />
+					<Loader
+						height="100%"
+						width="100%"
+						size="40px"
+						text="Loading location..."
+					/>
+				)}
+				{loadingLoc && (
+					<Loader
+						height="100%"
+						width="100%"
+						size="40px"
+						text="Accessing your location..."
+					/>
 				)}
 			</div>
 			{loc && (

@@ -10,8 +10,8 @@ const Navbar = () => {
 					<h1 className="text-white text-[1rem] font-[Tektur] sm:block hidden">
 						Starkregen
 					</h1>
+					<h1 className="text-white text-[1rem] font-[Tektur] sm:hidden">SR</h1>
 				</Link>
-				<h1 className="text-white text-[1rem] font-[Tektur] sm:hidden">SR</h1>
 			</div>
 			<div className="w-2/4 flex-center">
 				<Search />
