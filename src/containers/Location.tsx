@@ -31,6 +31,7 @@ const Location = () => {
 	const [loc, setLoc] = useState<Loc | null>(null)
 	const [errorLoc, setErrorLoc] = useState<boolean>(false)
 	const [loadingCurrentLoc, setLoadingCurrentLoc] = useState<boolean>(false)
+	const [isUsingCurrent, setIsUsingCurrent] = useState<boolean>(false)
 
 	const { data, isLoading, isError, error } = useQuery({
 		queryKey: ['locationData', loc],
@@ -44,23 +45,26 @@ const Location = () => {
 		retry: 1,
 	})
 
-	const handleLoc = (loc: Loc) => {
+	const handleMapLoc = (loc: Loc) => {
+		setIsUsingCurrent(false)
 		setLoc(loc)
 	}
 
 	const handleCurrentLocation = () => {
 		setLoadingCurrentLoc(true)
+		setIsUsingCurrent(true)
+
 		if (!navigator.geolocation) {
 			console.log('geolocation not available!')
 			setErrorLoc(true)
 			setLoadingCurrentLoc(false)
-			handleLoc(altLoc)
+			setLoc((prev) => (prev === null ? altLoc : prev))
 			return
 		}
 
 		navigator.geolocation.getCurrentPosition(
 			(pos) => {
-				handleLoc({
+				setLoc({
 					lat: pos.coords.latitude,
 					lon: pos.coords.longitude,
 				})
@@ -70,7 +74,7 @@ const Location = () => {
 				console.log("Can't access your location!", err.message)
 				setErrorLoc(true)
 				setLoadingCurrentLoc(false)
-				handleLoc(altLoc)
+				setLoc((prev) => (prev === null ? altLoc : prev))
 			},
 			{
 				timeout: 5000,
@@ -86,20 +90,36 @@ const Location = () => {
 			<div className="flex-center flex-col w-full min-h-[350px]">
 				{data && (
 					<div className="flex-center gap-[10px] w-full text-[0.7rem]">
-						<InfoIcon className="text-[1.2em]" />
-						{!errorLoc ? (
-							<p className="text-[0.8rem]">Your current location was Found.</p>
+						{isUsingCurrent ? (
+							<>
+								<InfoIcon className="text-[1.2em]" />
+								{!errorLoc ? (
+									<p className="text-[0.8rem]">
+										Your current location was Found.
+									</p>
+								) : (
+									<div className="flex-center flex-col">
+										<p className="text-[0.8rem]">
+											Can't access your current location.
+										</p>
+										<button
+											className="border-1 mt-[10px] border-white p-[5px] rounded-[10px] hover:opacity-50 text-[0.6rem] cursor-pointer"
+											type="button"
+											onClick={handleCurrentLocation}
+										>
+											Try again
+										</button>
+									</div>
+								)}
+							</>
 						) : (
-							<p className="text-[0.8rem]">
-								Can't access your current location.
-								<button
-									className="ml-[10px] text-[0.8em] cursor-pointer"
-									type="button"
-									onClick={handleCurrentLocation}
-								>
-									Try again
-								</button>
-							</p>
+							<button
+								className="border-1 border-white p-[5px] rounded-[10px] hover:opacity-50 text-[0.7rem] cursor-pointer"
+								type="button"
+								onClick={handleCurrentLocation}
+							>
+								Get Current Location
+							</button>
 						)}
 					</div>
 				)}
@@ -125,7 +145,7 @@ const Location = () => {
 			{loc && (
 				<div className="flex w-full flex-col gap-[10px] overflow-hidden">
 					<h2 className="text-center text-[1.2rem]">Choose on Map</h2>
-					<Map loc={loc} enSelect handleLoc={handleLoc} />
+					<Map loc={loc} enSelect handleLoc={handleMapLoc} />
 				</div>
 			)}
 		</section>
