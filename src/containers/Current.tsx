@@ -1,4 +1,5 @@
 import { Day, Temp } from '@/components'
+import Link from 'next/link'
 
 type Props = {
 	location: LocationRes
@@ -10,7 +11,9 @@ const Current = ({ location, current }: Props) => {
 		<section className="flex-center p-[20px]">
 			<div className="w-full flex justify-center gap-[30px]">
 				<div>
-					<h1 className="text-[2rem]">{location.name}</h1>
+					<Link href={`/city/${location.name}`}>
+						<h1 className="text-[2rem]">{location.name}</h1>
+					</Link>
 					<h2 className="text-[0.9rem] mt-[10px]">{location.region}</h2>
 					<h2 className="text-[0.9rem]">{location.country}</h2>
 					<div className="text-[0.8rem] flex mt-[10px] gap-[20px]">

@@ -72,7 +72,10 @@ const Location = () => {
 		<section className="w-full flex flex-col md:flex-row lg:px-[17%] md:px-[10%] my-[20px]">
 			<div className="flex-center flex-col w-full min-h-[350px]">
 				{data && !loadingCurrentLoc && (
-					<div className="flex-center gap-[10px] w-full text-[0.7rem]">
+					<Current current={data.current} location={data.location} />
+				)}
+				{data && !loadingCurrentLoc && (
+					<div className="flex-center gap-[10px] w-full text-[0.7rem] mt-[20px]">
 						{isUsingCurrent ? (
 							<>
 								{!errorLoc ? (
@@ -116,22 +119,19 @@ const Location = () => {
 						)}
 					</div>
 				)}
-				{data && !loadingCurrentLoc && (
-					<Current current={data.current} location={data.location} />
-				)}
 				{isError && <p className="text-[0.8rem]">{error.message}</p>}
 				{isLoading && (
 					<Loader
-						height="100%"
-						width="100%"
-						size="40px"
-						text="Loading Location..."
+					height="100%"
+					width="100%"
+					size="40px"
+					text="Loading Location..."
 					/>
 				)}
 				{loadingCurrentLoc && (
 					<Loader
-						height="100%"
-						width="100%"
+					height="100%"
+					width="100%"
 						size="40px"
 						text="Accessing Current Location..."
 					/>
@@ -140,7 +140,13 @@ const Location = () => {
 			{loc && (
 				<div className="flex w-full flex-col gap-[10px] overflow-hidden">
 					<h2 className="text-center text-[1.2rem]">Choose on Map</h2>
-					<Map loc={loc} enSelect handleLoc={handleMapLoc} />
+					<Map
+						enGps
+						loc={loc}
+						enSelect
+						handleLoc={handleMapLoc}
+						handleCurrentLocation={handleCurrentLocation}
+					/>
 				</div>
 			)}
 		</section>

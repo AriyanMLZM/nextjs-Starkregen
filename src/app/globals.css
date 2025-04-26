@@ -39,6 +39,13 @@
 		justify-center
 		items-center;
 	}
+	.page-center {
+		@apply absolute
+		left-[50%]
+		top-[50%]
+		translate-y-[-50%]
+		translate-x-[-50%];
+	}
 }
 
 /* Hide scrollbar but keep functionality */

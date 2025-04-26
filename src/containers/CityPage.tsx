@@ -18,6 +18,7 @@ const CityPage = ({ forecast }: Props) => {
 			<section className="flex-center flex-col md:flex-row gap-[50px] my-[40px] overflow-hidden">
 				<Current location={forecast.location} current={forecast.current} />
 				<Map
+					enGps={false}
 					enSelect={false}
 					weatherData={{
 						name: forecast.location.name,
