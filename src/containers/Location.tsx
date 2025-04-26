@@ -76,10 +76,19 @@ const Location = () => {
 						{isUsingCurrent ? (
 							<>
 								{!errorLoc ? (
-									<p className="text-[0.8rem] flex-center gap-[5px]">
-										<InfoIcon className="text-[1.2em]" />
-										Your current location was Found.
-									</p>
+									<div className="flex-center flex-col">
+										<p className="text-[0.8rem] flex-center gap-[5px]">
+											<InfoIcon className="text-[1.2em]" />
+											Your current location was Found.
+										</p>
+										<button
+											className="border-1 mt-[10px] border-white p-[5px] rounded-[10px] hover:opacity-50 text-[0.6rem] cursor-pointer"
+											type="button"
+											onClick={handleCurrentLocation}
+										>
+											Accurate
+										</button>
+									</div>
 								) : (
 									<div className="flex-center flex-col">
 										<p className="text-[0.8rem] flex-center gap-[5px]">
