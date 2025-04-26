@@ -8,8 +8,8 @@ const fetchIPLocation = async () => {
 			throw new Error('Failed to fetch IP-based location')
 		})
 	return {
-		lat: data.latitude,
-		lon: data.longitude,
+		lat: data.lat,
+		lon: data.lon,
 	}
 }
 
