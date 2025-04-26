@@ -1,7 +1,12 @@
+import axios from 'axios'
+
 const fetchIPLocation = async () => {
-	const res = await fetch('https://ipapi.co/json/')
-	if (!res.ok) throw new Error('Failed to fetch IP-based location')
-	const data = await res.json()
+	const data = await axios
+		.get('/api/iploc')
+		.then((res) => res.data)
+		.catch((error) => {
+			throw new Error('Failed to fetch IP-based location')
+		})
 	return {
 		lat: data.latitude,
 		lon: data.longitude,
