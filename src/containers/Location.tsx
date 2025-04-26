@@ -5,7 +5,8 @@ import { Current } from './'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { Loader, Map } from '@/components'
-import { InfoIcon } from '@/icons'
+import { ErrorIcon, InfoIcon } from '@/icons'
+import { getCurrentLocation } from '@/utils/getCurrentLocation'
 
 const altLoc: Loc = {
 	lat: 29.6036,
@@ -53,53 +54,36 @@ const Location = () => {
 	const handleCurrentLocation = () => {
 		setLoadingCurrentLoc(true)
 		setIsUsingCurrent(true)
+		setErrorLoc(false)
 
-		if (!navigator.geolocation) {
-			console.log('geolocation not available!')
-			setErrorLoc(true)
-			setLoadingCurrentLoc(false)
-			setLoc((prev) => (prev === null ? altLoc : prev))
-			return
-		}
-
-		navigator.geolocation.getCurrentPosition(
-			(pos) => {
-				setLoc({
-					lat: pos.coords.latitude,
-					lon: pos.coords.longitude,
-				})
-				setLoadingCurrentLoc(false)
-			},
-			(err) => {
-				console.log("Can't access your location!", err.message)
+		getCurrentLocation()
+			.then(setLoc)
+			.catch(() => {
 				setErrorLoc(true)
 				setLoadingCurrentLoc(false)
 				setLoc((prev) => (prev === null ? altLoc : prev))
-			},
-			{
-				timeout: 5000,
-				enableHighAccuracy: true,
-				maximumAge: 0,
-			}
-		)
+			})
+			.finally(() => setLoadingCurrentLoc(false))
 	}
+
 	useEffect(() => handleCurrentLocation(), [])
 
 	return (
 		<section className="w-full flex flex-col md:flex-row lg:px-[17%] md:px-[10%] my-[20px]">
 			<div className="flex-center flex-col w-full min-h-[350px]">
-				{data && (
+				{data && !loadingCurrentLoc && (
 					<div className="flex-center gap-[10px] w-full text-[0.7rem]">
 						{isUsingCurrent ? (
 							<>
-								<InfoIcon className="text-[1.2em]" />
 								{!errorLoc ? (
-									<p className="text-[0.8rem]">
+									<p className="text-[0.8rem] flex-center gap-[5px]">
+										<InfoIcon className="text-[1.2em]" />
 										Your current location was Found.
 									</p>
 								) : (
 									<div className="flex-center flex-col">
-										<p className="text-[0.8rem]">
+										<p className="text-[0.8rem] flex-center gap-[5px]">
+											<ErrorIcon className="text-[1.2em]" />
 											Can't access your current location.
 										</p>
 										<button
@@ -123,7 +107,9 @@ const Location = () => {
 						)}
 					</div>
 				)}
-				{data && <Current current={data.current} location={data.location} />}
+				{data && !loadingCurrentLoc && (
+					<Current current={data.current} location={data.location} />
+				)}
 				{isError && <p className="text-[0.8rem]">{error.message}</p>}
 				{isLoading && (
 					<Loader

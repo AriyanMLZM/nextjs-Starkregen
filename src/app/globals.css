@@ -9,7 +9,7 @@
 
 @layer base {
 	html {
-		@apply text-[15px]
+		@apply text-[16px]
 		sm:text-[17px] 
 		md:text-[20px]
 		font-[Poppins]

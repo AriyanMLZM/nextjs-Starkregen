@@ -6,7 +6,7 @@ const UnitSwitcher = () => {
 
 	return (
 		<button
-			className="w-[3rem] h-[1,5rem] flex-center ring-1 ring-white rounded-full"
+			className="w-[3rem] h-[1.5rem] flex-center ring-1 ring-white rounded-full"
 			onClick={toggleUnit}
 		>
 			<div
