@@ -57,10 +57,15 @@ const Location = () => {
 		setErrorLoc(false)
 
 		getCurrentLocation()
-			.then(setLoc)
+			.then((loc) => {
+				if (loc.lat) setLoc(loc)
+				else {
+					setLoc(altLoc)
+					setErrorLoc(true)
+				}
+			})
 			.catch(() => {
 				setErrorLoc(true)
-				setLoadingCurrentLoc(false)
 				setLoc((prev) => (prev === null ? altLoc : prev))
 			})
 			.finally(() => setLoadingCurrentLoc(false))
@@ -122,16 +127,16 @@ const Location = () => {
 				{isError && <p className="text-[0.8rem]">{error.message}</p>}
 				{isLoading && (
 					<Loader
-					height="100%"
-					width="100%"
-					size="40px"
-					text="Loading Location..."
+						height="100%"
+						width="100%"
+						size="40px"
+						text="Loading Location..."
 					/>
 				)}
 				{loadingCurrentLoc && (
 					<Loader
-					height="100%"
-					width="100%"
+						height="100%"
+						width="100%"
 						size="40px"
 						text="Accessing Current Location..."
 					/>
