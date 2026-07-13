@@ -5,6 +5,7 @@ import axios from 'axios'
 import { IconSearch } from '@/icons'
 import { Loader } from './'
 import Link from 'next/link'
+import { useDebounce } from '@/hooks/useDebounce'
 
 const fetchSearch = async (search: string) => {
 	const data: City[] = await axios
@@ -38,17 +39,18 @@ const Item = ({
 
 const Search = () => {
 	const [search, setSearch] = useState<string>('')
+	const debouncedSearch = useDebounce(search, 500)
 
 	const { data, isLoading, isError, error } = useQuery({
-		queryKey: ['searchData', search],
-		queryFn: () => fetchSearch(search),
-		enabled: search.length > 2,
+		queryKey: ['searchData', debouncedSearch],
+		queryFn: () => fetchSearch(debouncedSearch),
+		enabled: debouncedSearch.length > 2,
 		staleTime: 24 * 60 * 60 * 1000, // 1 day
 		networkMode: 'always',
 		refetchOnMount: false,
 		refetchOnReconnect: true,
 		refetchOnWindowFocus: false,
-		retry: 1
+		retry: 1,
 	})
 
 	return (
