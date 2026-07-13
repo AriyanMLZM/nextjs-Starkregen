@@ -1,6 +1,7 @@
 'use client'
 import { withAnimationRightSlide } from '@/hoc/withAnimation'
 import { IconGps } from '@/icons'
+import { useTheme } from 'next-themes'
 import dynamic from 'next/dynamic'
 
 const DynamicMap = dynamic(() => import('./Map'), {
@@ -17,10 +18,11 @@ type Props = {
 }
 
 const Map = (props: Props) => {
+	const { theme } = useTheme()
 	return (
 		<div className="flex-center flex-col">
 			<div className="w-[300px] h-[300px] overflow-hidden rounded-[20px] border-2 border-primary relative">
-				<DynamicMap isDark={true} {...props} />
+				<DynamicMap isDark={theme === 'dark'} {...props} />
 				<h3 className="absolute left-[50%] translate-x-[-50%] bottom-[5px] select-none font-[Tektur] text-[0.7rem]">
 					Starkregen
 				</h3>
