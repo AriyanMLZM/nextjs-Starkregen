@@ -90,7 +90,7 @@ const Location = () => {
 											Your current location was Found.
 										</p>
 										<button
-											className="border-1 mt-[10px] border-white p-[5px] rounded-[10px] hover:opacity-50 text-[0.6rem] cursor-pointer"
+											className="border-1 mt-[10px] border-border p-[5px] rounded-[10px] hover:opacity-50 text-[0.6rem] cursor-pointer"
 											type="button"
 											onClick={handleCurrentLocation}
 										>
@@ -104,7 +104,7 @@ const Location = () => {
 											Can't access your current location.
 										</p>
 										<button
-											className="border-1 mt-[10px] border-white p-[5px] rounded-[10px] hover:opacity-50 text-[0.6rem] cursor-pointer"
+											className="border-1 mt-[10px] border-border p-[5px] rounded-[10px] hover:opacity-50 text-[0.6rem] cursor-pointer"
 											type="button"
 											onClick={handleCurrentLocation}
 										>
@@ -115,7 +115,7 @@ const Location = () => {
 							</>
 						) : (
 							<button
-								className="border-1 border-white p-[5px] rounded-[10px] hover:opacity-50 text-[0.7rem] cursor-pointer"
+								className="border-1 border-border p-[5px] rounded-[10px] hover:opacity-50 text-[0.7rem] cursor-pointer"
 								type="button"
 								onClick={handleCurrentLocation}
 							>

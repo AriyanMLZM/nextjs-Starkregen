@@ -10,7 +10,7 @@ type Props = {
 
 const DayItem = ({ day }: DayItemProps) => {
 	return (
-		<div className="min-w-[7rem] border-white flex-center flex-col">
+		<div className="min-w-[7rem] border-border flex-center flex-col">
 			<img
 				draggable="false"
 				src={day.day.condition.icon}
@@ -31,8 +31,8 @@ const DayItem = ({ day }: DayItemProps) => {
 			</span>
 			<h3 className="text-[0.7rem] mt-[10px] mb-[2px]">{day.date}</h3>
 			<Day date={day.date} size="0.9rem" />
-			<div className="w-full border-t-[2px] border-white flex-center mt-[15px]">
-				<div className="w-[1rem] h-[1rem] rounded-full translate-y-[-50%] bg-white flex-center">
+			<div className="w-full border-t-[2px] border-border flex-center mt-[15px]">
+				<div className="w-[1rem] h-[1rem] rounded-full translate-y-[-50%] bg-foreground flex-center">
 					<div className="w-[0.5rem] h-[0.5rem] bg-bgColor rounded-full" />
 				</div>
 			</div>

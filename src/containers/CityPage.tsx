@@ -10,7 +10,7 @@ interface Props {
 const CityPage = ({ forecast }: Props) => {
 	return (
 		<>
-			<div className="w-[1.5rem] fixed top-[60px] left-[10px] bg-black/50 rounded">
+			<div className="w-[1.5rem] fixed top-[60px] left-[10px] bg-overlay rounded">
 				<Link href="/">
 					<IconBack className="w-full h-full" />
 				</Link>

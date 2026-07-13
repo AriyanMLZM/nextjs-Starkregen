@@ -2,6 +2,7 @@ import Navbar from '../containers/Navbar'
 import Search from './Search'
 import Loader from './Loader'
 import UnitSwitcher from './UnitSwitcher'
+import ThemeToggle from './ThemeToggle'
 import Temp from './Temp'
 import DraggableList from './DraggableList'
 import Day from './Day'
@@ -13,6 +14,7 @@ export {
 	Search,
 	Loader,
 	UnitSwitcher,
+	ThemeToggle,
 	Temp,
 	DraggableList,
 	Day,

@@ -10,9 +10,9 @@ const Loader = ({ size, width, height, text }: Props) => {
 		<div style={{ width, height }} className="flex-center flex-col gap-[20px]">
 			<div
 				style={{ width: size, height: size }}
-				className="border-1 border-white animate-spin"
+				className="border-1 border-border animate-spin"
 			/>
-			{text && <span className="text-white text-[1rem]">{text}</span>}
+			{text && <span className="text-foreground text-[1rem]">{text}</span>}
 		</div>
 	)
 }

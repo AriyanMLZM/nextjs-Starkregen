@@ -56,8 +56,8 @@ const VerticalItem = ({ city, ind }: ItemProps) => {
 			</div>
 
 			<div className="w-2/12 flex justify-center items-center relative">
-				<div className="h-full w-0.5 bg-white absolute top-0"></div>
-				<div className="z-[1] w-4 h-4 rounded-full bg-bgColor border-4"></div>
+				<div className="h-full w-0.5 bg-border absolute top-0"></div>
+				<div className="z-[1] w-4 h-4 rounded-full bg-bgColor border-4 border-border"></div>
 			</div>
 		</motion.div>
 	)

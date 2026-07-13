@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Navbar } from '@/components'
 import { ReactQueryProvider } from '@/providers/ReactQuery'
+import { ThemeProvider } from '@/providers/ThemeProvider'
 import { UnitProvider } from '@/contexts/UnitContext'
 import { Footer } from '@/containers'
 
@@ -20,15 +21,17 @@ const RootLayout = ({
 	children: React.ReactNode
 }>) => {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<body>
-				<ReactQueryProvider>
-					<UnitProvider>
-						<Navbar />
-						{children}
-						<Footer />
-					</UnitProvider>
-				</ReactQueryProvider>
+				<ThemeProvider>
+					<ReactQueryProvider>
+						<UnitProvider>
+							<Navbar />
+							{children}
+							<Footer />
+						</UnitProvider>
+					</ReactQueryProvider>
+				</ThemeProvider>
 			</body>
 		</html>
 	)
